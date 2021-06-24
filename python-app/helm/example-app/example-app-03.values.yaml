@@ -1,0 +1,4 @@
+deployment:
+  image: "achandre/python"
+  tag: "1.0.4"
+name: example-app-3
