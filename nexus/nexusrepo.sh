@@ -1,0 +1,1 @@
+helm upgrade --install nexus-repository-manager --values values.yaml sonatype/nexus-repository-manager --namespace nexus --version 29.2.0
