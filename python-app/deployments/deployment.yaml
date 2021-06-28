@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: example-app
-        image: achandre/python:1
+        image: achandre/python:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
