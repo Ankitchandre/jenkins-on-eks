@@ -30,7 +30,7 @@ pipeline {
             steps{
                 sh script: '''
                 #!/bin/bash
-                cd $WORKSPACE/test-app/python
+                cd $WORKSPACE/jenkins-on-eks/python-app/python
                 docker build . --network host -t achandre/python:${BUILD_NUMBER}
                 '''
             }
@@ -52,10 +52,10 @@ pipeline {
                 #get kubectl for this demo
                 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
                 chmod +x ./kubectl
-                ./kubectl apply -f ./python-app/configmaps/configmap.yaml -n dev
-                ./kubectl apply -f ./python-app/secrets/secret.yaml -n dev
-                cat ./python-app/deployments/deployment.yaml | sed s/1.0.0/${BUILD_NUMBER}/g | ./kubectl apply -n dev -f -
-                ./kubectl apply -f ./python-app/services/service.yaml -n dev
+                ./kubectl apply -f ./python-app/configmaps/configmap.yaml -n demo
+                ./kubectl apply -f ./python-app/secrets/secret.yaml -n demo
+                cat ./python-app/deployments/deployment.yaml | sed s/1.0.0/${BUILD_NUMBER}/g | ./kubectl apply -n demo -f -
+                ./kubectl apply -f ./python-app/services/service.yaml -n demo
                 '''
         }
     }
